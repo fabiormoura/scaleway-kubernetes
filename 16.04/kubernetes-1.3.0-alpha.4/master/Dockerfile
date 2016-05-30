@@ -21,6 +21,8 @@ RUN apt-get -y install golang && \
 # kubelet expects the loader to be in this location
 RUN ln -s /lib/ld-linux-armhf.so.3 /lib/ld-linux.so.3
 
+RUN mkdir -p /opt/bin
+
 # Install Etcd
 RUN cd /usr/src/ && git clone https://github.com/coreos/etcd.git -b release-2.2 && \
     cd /usr/src/etcd && \
@@ -38,9 +40,11 @@ RUN cd /usr/src && \
 # Install kubernetes
 RUN cd /usr/src && \
     wget https://github.com/kubernetes/kubernetes/releases/download/v1.3.0-alpha.4/kubernetes.tar.gz && \
-    tar zxvf kubernetes.tar.gz && cd /usr/src/kubernetes/server && \
-    tar zxvf kubernetes-server-linux-arm.tar.gz && cd kubernetes/server/bin && \
-    cp federated-apiserver hyperkube kube-apiserver kube-controller-manager kubectl kubelet kubemark kube-proxy kube-scheduler /opt/bin/
+    tar zxvf kubernetes.tar.gz kubernetes/server/kubernetes-server-linux-arm.tar.gz
+
+RUN cd /usr/src/kubernetes/server && tar zxvf kubernetes-server-linux-arm.tar.gz kubernetes/server/bin && cd kubernetes/server/bin && \
+    cp federated-apiserver hyperkube kube-apiserver kube-controller-manager kubectl kubelet kubemark kube-proxy kube-scheduler /opt/bin/ && \
+    rm -rf /usr/src/kubernetes && rm -rf /usr/src/kubernetes.tar.gz
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
