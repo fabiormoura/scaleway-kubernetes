@@ -1,5 +1,5 @@
 NAME =			ubuntu-kubernetes
-VERSION =		16.04/1.3.0-alpha.4
+VERSION =		16.04_1.3.0-alpha.4
 TITLE =			Ubuntu + Kubernetes
 DESCRIPTION =		Ubuntu + Kubernetes
 SOURCE_URL =		https://github.com/fabiormoura/scaleway-ubuntu-kubernetes
