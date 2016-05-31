@@ -14,8 +14,6 @@ apt-get -q update                   \
 
 # Install Go
 apt-get -y install golang
-#    echo "export GOPATH=/usr/src/go_workspace" >> ~/.bashrc && \
-#    mkdir /usr/src/go_workspace
 
 pushd sources
 

@@ -22,7 +22,7 @@ MASTER_IP="10.1.1.1"
 MINION_IP="10.1.1.2" 
 KUBE_ROOT=/root/kube
 export KUBECTL_PATH=/opt/bin/kubectl
-#export DOCKER_OPTS="-s overlay"
+export DOCKER_OPTS="--storage-driver aufs"
 
 # Create /root/kube/default/etcd with proper contents.
 # $1: The one IP address where the etcd leader listens.
