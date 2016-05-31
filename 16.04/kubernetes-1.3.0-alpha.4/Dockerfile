@@ -81,7 +81,7 @@ RUN cd /usr/src/kubernetes-1.3.0-alpha.4/cluster && cp saltbase/salt/generate-ce
     cp kube-util.sh /root/kube/cluster
 
 
-RUN cd /usr/src/kube/ && curl -L -O https://storage.googleapis.com/kubernetes-release/easy-rsa/easy-rsa.tar.gz
+RUN cd /root/kube/ && curl -L -O https://storage.googleapis.com/kubernetes-release/easy-rsa/easy-rsa.tar.gz
 
 # Copy installation files required for configuring minion
 
