@@ -87,5 +87,8 @@ RUN cd /usr/src/kube/ && curl -L -O https://storage.googleapis.com/kubernetes-re
 
 RUN rm -rf /usr/src/kubernetes-1.3.0-alpha.4 && rm -rf /usr/src/kubernetes-1.3.0-alpha.4/
 
+# Add file used to configure master and minion nodes correctly
+ADD ./overlay/root/kube/configure.sh /root/kube/
+
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
