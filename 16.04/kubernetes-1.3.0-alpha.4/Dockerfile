@@ -67,7 +67,7 @@ RUN cd /usr/src/kubernetes-1.3.0-alpha.4/cluster/ubuntu/master/init_conf && cp *
     cd /usr/src/kubernetes-1.3.0-alpha.4/cluster/ubuntu/master-flannel/init_scripts && cp * /etc/init.d/
 
 # For some reason flannel does not come with execution permisison
-RUN chmod +x /etc/init.d/flannel
+RUN chmod +x /etc/init.d/flanneld
 
 # Copy installation files required for configuring master
 RUN mkdir -p /root/kube/cluster/lib
