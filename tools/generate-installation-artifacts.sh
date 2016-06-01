@@ -4,6 +4,13 @@ set -e
 mkdir -p installation-artifacts
 mkdir -p installation-artifacts/cluster
 mkdir -p installation-artifacts/cluster/lib
+mkdir -p installation-artifacts/master/bin
+mkdir -p installation-artifacts/master/init_conf
+mkdir -p installation-artifacts/master/init_scripts
+mkdir -p installation-artifacts/minion/bin
+mkdir -p installation-artifacts/minion/init_conf
+mkdir -p installation-artifacts/minion/init_scripts
+
 mkdir -p sources
 
 # Install packages
@@ -19,14 +26,14 @@ pushd sources
 
 # Install Etcd
 git clone https://github.com/coreos/etcd.git -b release-2.2 && \
-pushd etcd && ./build && cp bin/* ../../installation-artifacts/
+pushd etcd && ./build && cp bin/* ../../installation-artifacts/master/bin
 
 popd
 
 # Install flannel
 git clone https://github.com/coreos/flannel.git && \
 pushd flannel && ./build && chmod +x bin/flanneld && \
-cp bin/* ../../installation-artifacts/
+cp bin/* ../../installation-artifacts/minion/bin
 
 popd
 
@@ -36,7 +43,8 @@ tar zxvf kubernetes.tar.gz kubernetes/server/kubernetes-server-linux-amd64.tar.g
 pushd kubernetes
 mv server/kubernetes-server-linux-amd64.tar.gz . && \
 tar zxvf kubernetes-server-linux-amd64.tar.gz kubernetes/server/bin && \
-cp kubernetes/server/bin/* . && cp federated-apiserver hyperkube kube-apiserver kube-controller-manager kubectl kubelet kubemark kube-proxy kube-scheduler ../../installation-artifacts/
+cp kubernetes/server/bin/* . && cp federated-apiserver hyperkube kube-apiserver kube-controller-manager kubectl kubemark kube-scheduler ../../installation-artifacts/master/bin && \
+cp kubectl kube-proxy ../../installation-artifacts/minion/bin
 
 popd
 
@@ -45,15 +53,15 @@ tar zxvf v1.3.0-alpha.4.tar.gz
 
 pushd kubernetes-1.3.0-alpha.4
 
-cp cluster/ubuntu/minion/init_conf/* ../../installation-artifacts && \
-cp cluster/ubuntu/minion/init_scripts/* ../../installation-artifacts && \
-cp cluster/ubuntu/minion-flannel/init_conf/* ../../installation-artifacts && \
-cp cluster/ubuntu/minion-flannel/init_scripts/* ../../installation-artifacts && \
+cp cluster/ubuntu/minion/init_conf/* ../../installation-artifacts/minion/init_conf && \
+cp cluster/ubuntu/minion/init_scripts/* ../../installation-artifacts/minion/init_scripts && \
+cp cluster/ubuntu/minion-flannel/init_conf/* ../../installation-artifacts/minion/init_conf && \
+cp cluster/ubuntu/minion-flannel/init_scripts/* ../../installation-artifacts/minion/init_scripts && \
 
-cp cluster/ubuntu/master/init_conf/* ../../installation-artifacts && \
-cp cluster/ubuntu/master/init_scripts/* ../../installation-artifacts && \
-cp cluster/ubuntu/master-flannel/init_conf/* ../../installation-artifacts && \
-cp cluster/ubuntu/master-flannel/init_scripts/* ../../installation-artifacts && \
+cp cluster/ubuntu/master/init_conf/* ../../installation-artifacts/master/init_conf && \
+cp cluster/ubuntu/master/init_scripts/* ../../installation-artifacts/master/init_scripts && \
+cp cluster/ubuntu/master-flannel/init_conf/* ../../installation-artifacts/master/init_conf && \
+cp cluster/ubuntu/master-flannel/init_scripts/* ../../installation-artifacts/master/init_scripts && \
 
 cp cluster/saltbase/salt/generate-cert/make-ca-cert.sh ../../installation-artifacts && \
 cp cluster/ubuntu/reconfDocker.sh ../../installation-artifacts && \
