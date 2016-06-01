@@ -44,7 +44,7 @@ pushd kubernetes
 mv server/kubernetes-server-linux-amd64.tar.gz . && \
 tar zxvf kubernetes-server-linux-amd64.tar.gz kubernetes/server/bin && \
 cp kubernetes/server/bin/* . && cp federated-apiserver hyperkube kube-apiserver kube-controller-manager kubectl kubemark kube-scheduler ../../installation-artifacts/master/bin && \
-cp kubectl kube-proxy ../../installation-artifacts/minion/bin
+cp kubelet kube-proxy ../../installation-artifacts/minion/bin
 
 popd
 
