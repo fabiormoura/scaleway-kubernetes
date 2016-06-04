@@ -34,6 +34,9 @@ function configure() {
 # Install Go
 		apt-get -y install golang
 
+# Used to connect to glusterfs volume cluster storage
+		apt-get install -y glusterfs-client
+
 		mkdir -p /opt/bin
                 rm -rf /root/kube
 		mkdir -p /root/kube
