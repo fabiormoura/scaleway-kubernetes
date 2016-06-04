@@ -45,6 +45,7 @@ function configure() {
 
 function copy-for-master() {
 	cp configure.sh /root/kube/
+	cp deployAddon.sh /root/kube/
 	tar zxvf installation-artifacts.tar.gz
 	pushd installation-artifacts
 
@@ -59,6 +60,8 @@ function copy-for-master() {
 	mv master/init_scripts/* /etc/init.d/
 
 	popd
+       
+        cp -r saltbase /root/kube/cluster
 
 	rm -rf installation-artifacts/
 }
