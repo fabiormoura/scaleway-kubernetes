@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-
+set -x
 function prepare() {
 	case "$1" in
 		master)
@@ -38,6 +38,18 @@ function configure() {
 		apt-get install -y attr
 		apt-get install -y glusterfs-client
 
+# Configure git lfs
+		wget https://github.com/github/git-lfs/releases/download/v1.2.1/git-lfs-linux-amd64-1.2.1.tar.gz
+		tar zxvf git-lfs-linux-amd64-1.2.1.tar.gz
+		pushd git-lfs-1.2.1
+		bash install.sh
+		popd
+		rm -f git-lfs-linux-amd64-1.2.1.tar.gz
+		rm -f git-lfs-1.2.1
+
+		git lfs fetch
+		git lfs pull
+		
 		mkdir -p /opt/bin
                 rm -rf /root/kube
 		mkdir -p /root/kube
