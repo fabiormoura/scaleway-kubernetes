@@ -45,7 +45,7 @@ function configure() {
 		bash install.sh
 		popd
 		rm -f git-lfs-linux-amd64-1.2.1.tar.gz
-		rm -f git-lfs-1.2.1
+		rm -rf git-lfs-1.2.1
 
 		git lfs fetch
 		git lfs pull
