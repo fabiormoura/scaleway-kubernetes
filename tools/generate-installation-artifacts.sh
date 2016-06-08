@@ -38,7 +38,7 @@ cp bin/* ../../installation-artifacts/minion/bin
 popd
 
 # Install kubernetes
-wget https://github.com/kubernetes/kubernetes/releases/download/v1.3.0-alpha.4/kubernetes.tar.gz && \
+wget https://github.com/kubernetes/kubernetes/releases/download/v1.3.0-alpha.5/kubernetes.tar.gz && \
 tar zxvf kubernetes.tar.gz kubernetes/server/kubernetes-server-linux-amd64.tar.gz && \
 pushd kubernetes
 mv server/kubernetes-server-linux-amd64.tar.gz . && \
