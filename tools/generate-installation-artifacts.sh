@@ -43,15 +43,15 @@ tar zxvf kubernetes.tar.gz kubernetes/server/kubernetes-server-linux-amd64.tar.g
 pushd kubernetes
 mv server/kubernetes-server-linux-amd64.tar.gz . && \
 tar zxvf kubernetes-server-linux-amd64.tar.gz kubernetes/server/bin && \
-cp kubernetes/server/bin/* . && cp federated-apiserver hyperkube kube-apiserver kube-controller-manager kubectl kubemark kube-scheduler ../../installation-artifacts/master/bin && \
-cp kubelet kube-proxy ../../installation-artifacts/minion/bin
+cp kubernetes/server/bin/* . && cp federated-apiserver hyperkube kube-apiserver kube-controller-manager kubectl kubemark kube-scheduler ../../installation-artifacts/master/bin/ && \
+cp kubelet kube-proxy ../../installation-artifacts/minion/bin/
 
 popd
 
-wget https://github.com/kubernetes/kubernetes/archive/v1.3.0-alpha.4.tar.gz && \
-tar zxvf v1.3.0-alpha.4.tar.gz
+wget https://github.com/kubernetes/kubernetes/archive/v1.3.0-alpha.5.tar.gz && \
+tar zxvf v1.3.0-alpha.5.tar.gz
 
-pushd kubernetes-1.3.0-alpha.4
+pushd kubernetes-1.3.0-alpha.5
 
 cp cluster/ubuntu/minion/init_conf/* ../../installation-artifacts/minion/init_conf && \
 cp cluster/ubuntu/minion/init_scripts/* ../../installation-artifacts/minion/init_scripts && \
